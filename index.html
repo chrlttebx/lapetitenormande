@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Petite Normande — Maison de vacances à Trouville-sur-Mer</title>
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     BIENVENUE ! Ce fichier contient tout le site (texte, style,
+     code). Cherchez les balises "MODIFIABLE ICI" pour trouver
+     rapidement les endroits où changer textes, prix, e-mail et
+     images. Un guide complet est aussi dans README.txt.
+     ============================================================ -->
+
+<style>
+  :root{
+    --marine-deep:#16283D;
+    --marine:#274a6d;
+    --blue-mid:#5b87ad;
+    --sky:#cfe0ea;
+    --cream:#faf6ee;
+    --gold:#c6a15b;
+    --text:#1f2a36;
+    --radius:2px;
+    --stripe: repeating-linear-gradient(90deg, var(--blue-mid) 0px, var(--blue-mid) 14px, var(--cream) 14px, var(--cream) 34px);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Jost', sans-serif;
+    color:var(--text);
+    background:var(--cream);
+    line-height:1.65;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    color:var(--marine-deep);
+    letter-spacing:.02em;
+  }
+  .script{
+    font-family:'Beau Rivage', cursive;
+    font-weight:400;
+    color:var(--gold);
+    line-height:1;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit; cursor:pointer;}
+  .container{max-width:1160px; margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'Jost',sans-serif; text-transform:uppercase; letter-spacing:.22em;
+    font-size:.72rem; color:var(--gold); font-weight:500; margin-bottom:10px; display:block;
+  }
+  section{padding:96px 0;}
+  @media(max-width:720px){ section{padding:64px 0;} }
+
+  /* ---------- signature : bandeau rayé "cabine de plage" ---------- */
+  .awning{ height:16px; background:var(--stripe); }
+  .awning.edge{
+    height:26px;
+    -webkit-mask-image: repeating-linear-gradient(90deg, black 0 17px, transparent 17px 20px);
+            mask-image: repeating-linear-gradient(90deg, black 0 17px, transparent 17px 20px);
+  }
+
+  /* ---------- LANGUE / ORIGINE — écran d'accueil ---------- */
+  #langGate{
+    position:fixed; inset:0; z-index:9999;
+    background:var(--marine-deep);
+    background-image: var(--stripe), linear-gradient(rgba(22,40,61,.88), rgba(22,40,61,.88));
+    background-blend-mode:soft-light, normal;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    text-align:center; color:var(--cream); padding:24px;
+    transition:opacity .5s ease, visibility .5s ease;
+  }
+  #langGate.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+  #langGate img{ width:160px; margin-bottom:10px; filter:drop-shadow(0 6px 24px rgba(0,0,0,.35)); }
+  .langGate-brand{ display:flex; flex-direction:column; align-items:center; margin-bottom:10px; }
+  .langGate-title{
+    font-family:'Beau Rivage', cursive; font-size:2.8rem; color:#e8d5a3;
+    text-shadow: 0 2px 12px rgba(0,0,0,.4); line-height:1; margin-bottom:6px;
+    letter-spacing:.02em;
+  }
+  #langGate h2{ color:var(--cream); font-size:1.7rem; margin-bottom:6px; }
+  #langGate p{ opacity:.85; margin-bottom:32px; font-weight:300; }
+  .langChoices{ display:flex; gap:18px; flex-wrap:wrap; justify-content:center; }
+  .langBtn{
+    background:transparent; border:1px solid rgba(250,246,238,.5); color:var(--cream);
+    padding:16px 30px; font-size:.95rem; letter-spacing:.04em; border-radius:var(--radius);
+    display:flex; align-items:center; gap:10px; transition:.25s;
+  }
+  .langBtn:hover{ background:var(--cream); color:var(--marine-deep); border-color:var(--cream); }
+  .langBtn .flag{ font-size:1.3rem; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:500;
+    background:rgba(250,246,238,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(22,40,61,.08);
+  }
+  .navwrap{ display:flex; align-items:center; justify-content:space-between; padding:14px 28px; max-width:1160px; margin:0 auto; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand img{ width:48px; filter:drop-shadow(0 2px 6px rgba(22,40,61,.15)); }
+  .brand span{ font-family:'Beau Rivage',cursive; font-size:1.7rem; color:var(--marine-deep); }
+  nav ul{ list-style:none; display:flex; gap:34px; }
+  nav a{
+    font-size:.86rem; letter-spacing:.06em; text-transform:uppercase; color:var(--marine-deep);
+    padding:6px 0; border-bottom:1px solid transparent; transition:.2s;
+  }
+  nav a:hover{ border-color:var(--gold); color:var(--gold); }
+  .navRight{ display:flex; align-items:center; gap:18px; }
+  #langSwitch{
+    border:1px solid var(--marine-deep); background:none; color:var(--marine-deep);
+    font-size:.75rem; letter-spacing:.05em; padding:6px 12px; border-radius:var(--radius);
+  }
+  #langSwitch:hover{ background:var(--marine-deep); color:var(--cream); }
+  .navToggle{ display:none; background:none; border:none; font-size:1.5rem; color:var(--marine-deep); }
+  @media(max-width:860px){
+    nav{ position:fixed; top:73px; left:0; right:0; background:var(--cream); border-bottom:1px solid rgba(22,40,61,.1);
+         transform:translateY(-120%); transition:.3s; }
+    nav.open{ transform:translateY(0); }
+    nav ul{ flex-direction:column; padding:20px 28px; gap:16px; }
+    .navToggle{ display:block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:92vh; display:flex; align-items:flex-end; overflow:hidden;
+    background:var(--stripe);
+  }
+  .hero-media{
+    position:absolute; inset:0; z-index:0;
+    background:url('images/hero.jpg') center/cover no-repeat;
+  }
+  .hero-media video{ width:100%; height:100%; object-fit:cover; }
+  .hero-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(22,40,61,.15), rgba(22,40,61,.75));
+  }
+  .hero-inner{ position:relative; z-index:2; color:var(--cream); padding:70px 0; width:100%; }
+  .hero h1{ color:var(--cream); font-size:clamp(2.2rem, 5vw, 3.6rem); font-weight:500; max-width:720px; }
+  .hero .script{ font-size:clamp(1.6rem,3vw,2.2rem); display:block; margin-bottom:8px; }
+  .hero p{ max-width:560px; margin-top:18px; font-weight:300; font-size:1.05rem; color:var(--sky); }
+  .hero .cta-row{ margin-top:34px; display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding:14px 30px; border-radius:var(--radius); font-size:.85rem;
+    letter-spacing:.08em; text-transform:uppercase; transition:.25s; border:1px solid var(--gold);
+  }
+  .btn-solid{ background:var(--gold); color:var(--marine-deep); }
+  .btn-solid:hover{ background:#b3903f; }
+  .btn-ghost{ color:var(--cream); border-color:rgba(250,246,238,.6); }
+  .btn-ghost:hover{ border-color:var(--cream); background:rgba(250,246,238,.1); }
+
+  /* ---------- INTRO / WELCOME TEXT ---------- */
+  .intro{ text-align:center; max-width:760px; margin:0 auto; }
+  .intro h2{ font-size:2.1rem; margin-bottom:20px; }
+  .intro p{ font-size:1.05rem; color:#3c4a58; }
+
+  /* ---------- CAROUSEL ---------- */
+  .carousel-wrap{ margin-top:56px; }
+  .carousel{
+    display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px;
+    scrollbar-width:thin; scrollbar-color:var(--gold) transparent;
+  }
+  .carousel::-webkit-scrollbar{ height:6px; }
+  .carousel::-webkit-scrollbar-thumb{ background:var(--gold); border-radius:6px; }
+  .carousel figure{ flex:0 0 auto; width:340px; scroll-snap-align:start; }
+  .carousel figcaption{ margin-top:10px; font-size:.85rem; letter-spacing:.03em; color:var(--marine); text-align:center; }
+  .ph-img{
+    width:100%; aspect-ratio:4/3; background:var(--stripe); position:relative; border-radius:var(--radius);
+    background-size:34px 100%; overflow:hidden; background-repeat:repeat;
+  }
+  .ph-img img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+  .ph-img img.loaded + span, .ph-img img.loaded ~ span{ display:none; }
+  .ph-img span{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(22,40,61,.35); color:#fff; font-size:.78rem; letter-spacing:.04em; text-align:center; padding:10px;
+  }
+  .carousel-controls{ display:flex; justify-content:center; gap:14px; margin-top:18px; }
+  .arrowBtn{
+    width:40px; height:40px; border-radius:50%; border:1px solid var(--marine-deep); background:none;
+    color:var(--marine-deep); font-size:1rem; transition:.2s;
+  }
+  .arrowBtn:hover{ background:var(--marine-deep); color:var(--cream); }
+
+  /* ---------- SECTION : LA MAISON ---------- */
+  .section-alt{ background:var(--marine-deep); color:var(--cream); }
+  .section-alt h2, .section-alt .eyebrow{ color:var(--cream); }
+  .section-alt .eyebrow{ color:var(--gold); }
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  @media(max-width:860px){ .grid-2{ grid-template-columns:1fr; gap:40px; } }
+
+  .gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .gallery .ph-img{ aspect-ratio:1/1; }
+  @media(max-width:640px){ .gallery{ grid-template-columns:repeat(2,1fr); } }
+
+  .checklist{ list-style:none; margin-top:18px; }
+  .checklist li{
+    padding:12px 0 12px 30px; border-bottom:1px solid rgba(250,246,238,.14); position:relative; font-size:.98rem;
+  }
+  .checklist li::before{ content:"—"; position:absolute; left:0; color:var(--gold); }
+
+  .amenities{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px 24px; margin-top:18px; }
+  .amenity{ display:flex; align-items:center; gap:10px; font-size:.94rem; padding:8px 0; border-bottom:1px solid rgba(250,246,238,.1); }
+  .amenity .dot{ width:6px; height:6px; background:var(--gold); border-radius:50%; flex:0 0 auto; }
+
+  /* ---------- SECTION : TROUVILLE / DEAUVILLE ---------- */
+  .region-layout{ display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center; }
+  @media(max-width:860px){ .region-layout{ grid-template-columns:1fr; } }
+  .region-photos{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .region-photos .ph-img:first-child{ grid-column:1/3; aspect-ratio:16/9; }
+  .region-photos .ph-img{ aspect-ratio:1/1; }
+  .activities{ margin-top:26px; display:grid; gap:16px; }
+  .activity{ display:flex; gap:16px; align-items:flex-start; }
+  .activity .num{ font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--gold); flex:0 0 30px; }
+  .activity h4{ font-family:'Jost',sans-serif; font-weight:500; font-size:1rem; color:var(--marine-deep); margin-bottom:2px; }
+  .activity p{ font-size:.92rem; color:#4a5866; }
+
+  /* ---------- SECTION : RESERVATION ---------- */
+  .booking-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; margin-top:50px; }
+  @media(max-width:920px){ .booking-grid{ grid-template-columns:1fr; } }
+
+  .calendar-card{
+    background:#fff; border:1px solid rgba(22,40,61,.1); border-radius:var(--radius); padding:26px;
+    box-shadow:0 18px 40px -24px rgba(22,40,61,.35);
+  }
+  .cal-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .cal-head button{ background:none; border:1px solid var(--marine-deep); width:32px; height:32px; border-radius:50%; color:var(--marine-deep); }
+  .cal-head button:hover{ background:var(--marine-deep); color:#fff; }
+  .cal-head h4{ font-family:'Cormorant Garamond',serif; font-size:1.25rem; color:var(--marine-deep); text-transform:capitalize; }
+  .cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center; }
+  .cal-dow{ font-size:.68rem; letter-spacing:.05em; color:var(--blue-mid); text-transform:uppercase; padding-bottom:6px; }
+  .cal-day{
+    aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; font-size:.82rem;
+    border-radius:var(--radius); cursor:pointer; color:var(--text); position:relative; background:var(--cream);
+  }
+  .cal-day.empty{ background:none; cursor:default; }
+  .cal-day.past{ color:#c3c9cf; background:none; cursor:default; }
+  .cal-day.blocked{ background:#f1ded9; color:#b56a54; text-decoration:line-through; cursor:not-allowed; }
+  .cal-day.available:hover{ background:var(--sky); }
+  .cal-day.selected{ background:var(--marine-deep); color:#fff; }
+  .cal-day.in-range{ background:var(--sky); }
+  .legend{ display:flex; gap:18px; margin-top:16px; flex-wrap:wrap; }
+  .legend span{ font-size:.75rem; display:flex; align-items:center; gap:6px; color:#4a5866; }
+  .legend i{ width:10px; height:10px; border-radius:2px; display:inline-block; }
+  .legend .i-av{ background:var(--cream); border:1px solid #ccd6dd; }
+  .legend .i-bl{ background:#f1ded9; }
+  .legend .i-sel{ background:var(--marine-deep); }
+
+  .summary-box{
+    margin-top:20px; padding:18px; background:var(--cream); border:1px dashed var(--gold); border-radius:var(--radius);
+    font-size:.92rem;
+  }
+  .summary-box .row{ display:flex; justify-content:space-between; padding:4px 0; }
+  .summary-box .total{ font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--marine-deep); margin-top:8px; }
+
+  .guests-block{ margin-top:22px; padding-top:18px; border-top:1px solid rgba(22,40,61,.08); }
+  .guest-row{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; }
+  .guest-label strong{ display:block; font-size:.92rem; color:var(--text); font-weight:500; }
+  .guest-label small{ font-size:.76rem; color:#8a96a3; }
+  .counter{ display:flex; align-items:center; gap:14px; }
+  .counterBtn{
+    width:32px; height:32px; border-radius:50%; border:1px solid var(--marine-deep); background:#fff;
+    color:var(--marine-deep); font-size:1.05rem; line-height:1; transition:.2s;
+  }
+  .counterBtn:hover{ background:var(--marine-deep); color:#fff; }
+  .counterBtn:disabled{ opacity:.35; cursor:not-allowed; background:#fff; color:var(--marine-deep); }
+  .counter span{ min-width:16px; text-align:center; font-size:.95rem; }
+
+  .child-ages{ display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+  .child-age-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:6px 0; }
+  .child-age-row label{ font-size:.85rem; color:var(--marine); }
+  .child-age-row select{
+    padding:7px 10px; border:1px solid rgba(22,40,61,.2); border-radius:var(--radius); font-family:inherit; font-size:.88rem; background:var(--cream);
+  }
+  .guestLimitNote{ font-size:.75rem; color:#b5493a; margin-top:10px; min-height:1em; }
+
+  .form-card{ background:#fff; border:1px solid rgba(22,40,61,.1); border-radius:var(--radius); padding:30px; box-shadow:0 18px 40px -24px rgba(22,40,61,.35); }
+  .form-card h3{ font-size:1.4rem; margin-bottom:6px; }
+  .form-card > p{ font-size:.88rem; color:#5a6774; margin-bottom:22px; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; color:var(--marine); margin-bottom:6px; }
+  .field input, .field textarea{
+    width:100%; padding:11px 13px; border:1px solid rgba(22,40,61,.18); border-radius:var(--radius);
+    font-family:inherit; font-size:.95rem; background:var(--cream);
+  }
+  .field input:focus, .field textarea:focus, .guest-select select:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:480px){ .two-col{ grid-template-columns:1fr; } }
+  .submitBtn{
+    width:100%; background:var(--marine-deep); color:#fff; border:none; padding:15px; border-radius:var(--radius);
+    text-transform:uppercase; letter-spacing:.08em; font-size:.85rem; margin-top:8px; transition:.2s;
+  }
+  .submitBtn:hover{ background:var(--marine); }
+  .submitBtn:disabled{ opacity:.5; cursor:not-allowed; }
+  .formNote{ font-size:.78rem; color:#7b8794; margin-top:12px; }
+  #formStatus{ font-size:.85rem; margin-top:10px; }
+
+  /* ---------- SECTION : AVIS ---------- */
+  .reviews-summary{ text-align:center; margin-bottom:50px; }
+  .reviews-avg{ font-family:'Cormorant Garamond',serif; font-size:3.4rem; color:var(--marine-deep); line-height:1; }
+  .reviews-stars{ color:var(--gold); font-size:1.3rem; letter-spacing:3px; margin:8px 0 6px; }
+  .reviews-count{ font-size:.85rem; color:#7b8794; }
+
+  .reviews-carousel-wrap{ margin-bottom:44px; }
+  .reviews-carousel{
+    display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px;
+    scrollbar-width:thin; scrollbar-color:var(--gold) transparent;
+  }
+  .reviews-carousel::-webkit-scrollbar{ height:6px; }
+  .reviews-carousel::-webkit-scrollbar-thumb{ background:var(--gold); border-radius:6px; }
+  .review-card{ flex:0 0 auto; width:320px; scroll-snap-align:start; }
+  @media(max-width:480px){ .review-card{ width:82vw; } }
+  .review-card{
+    background:#fff; border:1px solid rgba(22,40,61,.1); border-radius:var(--radius); padding:22px;
+    box-shadow:0 14px 30px -22px rgba(22,40,61,.3);
+  }
+  .review-card .stars{ color:var(--gold); font-size:.95rem; letter-spacing:2px; margin-bottom:10px; }
+  .review-card p{ font-size:.92rem; color:#3c4a58; margin-bottom:14px; }
+  .review-card .who{ font-size:.8rem; color:var(--marine); letter-spacing:.03em; text-transform:uppercase; }
+
+  .review-form-card{
+    max-width:560px; margin:0 auto; background:var(--cream); border:1px solid rgba(22,40,61,.1);
+    border-radius:var(--radius); padding:32px; text-align:left;
+  }
+  .review-form-card h3{ text-align:center; margin-bottom:6px; }
+  .review-form-card > p{ text-align:center; font-size:.86rem; color:#5a6774; margin-bottom:22px; }
+  .star-picker{ display:flex; gap:8px; justify-content:center; margin-bottom:20px; }
+  .star-picker button{
+    background:none; border:none; font-size:1.9rem; color:#d8dee3; transition:.15s; line-height:1;
+  }
+  .star-picker button.active, .star-picker button:hover{ color:var(--gold); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--marine-deep); color:var(--sky); padding:60px 0 26px; text-align:center; }
+  footer .brand span{ color:var(--cream); }
+  footer img{ width:52px; margin:0 auto 14px; }
+  footer p{ font-size:.85rem; opacity:.75; margin-top:6px; }
+  footer .gull{ margin-top:30px; opacity:.5; width:70px; margin-left:auto; margin-right:auto; }
+
+  .fade-in{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .fade-in.show{ opacity:1; transform:translateY(0); }
+
+  [data-i18n-hide]{ display:none; }
+
+  /* ---------- GALERIE PAR PIÈCE (lightbox avec navigation) ---------- */
+  .ph-img{ cursor:zoom-in; }
+  #lightbox{
+    position:fixed; inset:0; z-index:9998; background:rgba(15,25,38,.96);
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    padding:20px; opacity:0; visibility:hidden;
+    transition:opacity .3s ease, visibility .3s ease;
+  }
+  #lightbox.open{ opacity:1; visibility:visible; }
+  #lightboxMedia{
+    max-width:min(960px,92vw); max-height:76vh;
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  #lightboxMedia img{
+    max-width:100%; max-height:76vh; object-fit:contain;
+    border-radius:var(--radius); box-shadow:0 30px 70px rgba(0,0,0,.5);
+    display:none;
+  }
+  #lightboxMedia video{
+    max-width:100%; max-height:76vh; border-radius:var(--radius);
+    box-shadow:0 30px 70px rgba(0,0,0,.5); display:none;
+  }
+  #lightboxMedia img.active, #lightboxMedia video.active{ display:block; }
+  #lightboxCaption{
+    color:var(--cream); text-align:center; margin-top:14px;
+    font-size:.9rem; letter-spacing:.03em;
+  }
+  #lightboxCounter{
+    color:var(--sky); font-size:.8rem; margin-top:6px; letter-spacing:.06em;
+  }
+  #lightboxClose{
+    position:absolute; top:20px; right:24px; background:none;
+    border:1px solid rgba(250,246,238,.5); color:var(--cream);
+    width:42px; height:42px; border-radius:50%; font-size:1.2rem; z-index:2;
+  }
+  #lightboxClose:hover{ background:var(--cream); color:var(--marine-deep); }
+  .lb-nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(250,246,238,.15); border:1px solid rgba(250,246,238,.4);
+    color:var(--cream); width:44px; height:44px; border-radius:50%;
+    font-size:1.1rem; cursor:pointer; transition:.2s; z-index:2;
+  }
+  .lb-nav:hover{ background:var(--cream); color:var(--marine-deep); }
+  #lbPrev{ left:-58px; }
+  #lbNext{ right:-58px; }
+  @media(max-width:700px){
+    #lbPrev{ left:4px; } #lbNext{ right:4px; }
+    .lb-nav{ top:auto; bottom:-52px; transform:none; }
+  }
+  .lb-dots{ display:flex; gap:7px; margin-top:14px; justify-content:center; }
+  .lb-dot{
+    width:7px; height:7px; border-radius:50%; background:rgba(250,246,238,.3);
+    cursor:pointer; transition:.2s; border:none;
+  }
+  .lb-dot.active{ background:var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ================= ÉCRAN LANGUE / ORIGINE ================= -->
+<div id="langGate">
+  <div class="langGate-brand">
+    <span class="langGate-title">La petite Normande</span>
+    <img src="images/logo.png" alt="La Petite Normande">
+  </div>
+  <h2>D'où venez-vous&nbsp;? <span style="opacity:.6">/ Where are you visiting from?</span></h2>
+  <p>Choisissez votre langue — Choose your language</p>
+  <div class="langChoices">
+    <button class="langBtn" data-lang="fr"><span class="flag">🇫🇷</span> France — Français</button>
+    <button class="langBtn" data-lang="en"><span class="flag">🌍</span> Rest of the world — English</button>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="navwrap">
+    <a href="#home" class="brand">
+      <img src="images/logo.png" alt="Logo La Petite Normande">
+      <span>La petite Normande</span>
+    </a>
+    <button class="navToggle" id="navToggle" aria-label="Menu">☰</button>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#home" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="#house" data-i18n="nav.house">La maison</a></li>
+        <li><a href="#region" data-i18n="nav.region">Trouville &amp; Deauville</a></li>
+        <li><a href="#booking" data-i18n="nav.booking">Réservation</a></li>
+        <li><a href="#reviews" data-i18n="nav.reviews">Avis</a></li>
+      </ul>
+    </nav>
+    <div class="navRight">
+      <button id="langSwitch">EN</button>
+    </div>
+  </div>
+</header>
+<div class="awning"></div>
+
+<!-- ================= HERO / ACCUEIL ================= -->
+<section id="home" class="hero">
+  <div class="hero-media" id="heroMedia"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-inner">
+    <span class="script" data-i18n="hero.script">Bienvenue à</span>
+    <h1 data-i18n="hero.title">La petite Normande</h1>
+    <p data-i18n="hero.subtitle">Une maison de charme au cœur de Trouville-sur-Mer, à deux pas des planches et du marché aux poissons. Le temps d'un séjour, posez vos valises face à la mer.</p>
+    <div class="cta-row">
+      <a href="#booking" class="btn btn-solid" data-i18n="hero.cta1">Vérifier les disponibilités</a>
+      <a href="#house" class="btn btn-ghost" data-i18n="hero.cta2">Découvrir la maison</a>
+    </div>
+  </div>
+</section>
+<div class="awning edge"></div>
+
+<!-- ================= INTRO + CARROUSEL PHOTOS ================= -->
+<section>
+  <div class="container">
+    <div class="intro fade-in">
+      <span class="eyebrow" data-i18n="intro.eyebrow">L'esprit de la maison</span>
+      <h2 data-i18n="intro.title">Un pied-à-terre normand, entre mer et charme d'antan</h2>
+      <p data-i18n="intro.text">La Petite Normande a été pensée comme un cocon lumineux et chaleureux : parquet ancien, tons bleus et blancs, petites attentions... Chaque pièce raconte un peu de Trouville.</p>
+    </div>
+
+    <div class="carousel-wrap fade-in">
+      <div class="carousel" id="roomCarousel">
+        <!-- MODIFIABLE ICI : ajoutez/retirez des <figure> pour chaque photo de pièce -->
+        <figure>
+          <div class="ph-img"><img src="images/salon.jpg" alt="Salon" onerror="this.style.display='none'"><span data-i18n="room.salon">Le salon</span></div>
+          <figcaption data-i18n="room.salon">Le salon</figcaption>
+        </figure>
+        <figure>
+          <div class="ph-img"><img src="images/cuisine.jpg" alt="Cuisine" onerror="this.style.display='none'"><span data-i18n="room.kitchen">La cuisine</span></div>
+          <figcaption data-i18n="room.kitchen">La cuisine</figcaption>
+        </figure>
+        <figure>
+          <div class="ph-img"><img src="images/chambre1.jpg" alt="Chambre 1" onerror="this.style.display='none'"><span data-i18n="room.bed1">Chambre 1</span></div>
+          <figcaption data-i18n="room.bed1">Chambre 1</figcaption>
+        </figure>
+        <figure>
+          <div class="ph-img"><img src="images/chambre2.jpg" alt="Chambre 2" onerror="this.style.display='none'"><span data-i18n="room.bed2">Chambre 2</span></div>
+          <figcaption data-i18n="room.bed2">Chambre 2</figcaption>
+        </figure>
+        <figure>
+          <div class="ph-img"><img src="images/chambre3.jpg" alt="Chambre 3" onerror="this.style.display='none'"><span data-i18n="room.bed3">Chambre 3</span></div>
+          <figcaption data-i18n="room.bed3">Chambre 3</figcaption>
+        </figure>
+        <figure>
+          <div class="ph-img"><img src="images/sdb.jpg" alt="Salle de bain" onerror="this.style.display='none'"><span data-i18n="room.bath">Salle de bain</span></div>
+          <figcaption data-i18n="room.bath">Salle de bain</figcaption>
+        </figure>
+        <figure>
+          <div class="ph-img"><img src="images/terrasse.jpg" alt="Terrasse" onerror="this.style.display='none'"><span data-i18n="room.terrace">Terrasse</span></div>
+          <figcaption data-i18n="room.terrace">Terrasse</figcaption>
+        </figure>
+      </div>
+      <div class="carousel-controls">
+        <button class="arrowBtn" id="carLeft">←</button>
+        <button class="arrowBtn" id="carRight">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="awning"></div>
+
+<!-- ================= LA MAISON : EQUIPEMENTS & SERVICES ================= -->
+<section id="house" class="section-alt">
+  <div class="container">
+    <div class="grid-2">
+      <div class="fade-in">
+        <span class="eyebrow" data-i18n="house.eyebrow">La maison</span>
+        <h2 data-i18n="house.title">Tout le confort d'une maison, l'attention d'une hôte</h2>
+        <p style="margin-top:16px; color:var(--sky); font-size:.98rem;" data-i18n="house.text">
+          3 chambres, 1 salle de bain, cuisine équipée et un joli jardin exposé plein sud. La maison accueille jusqu'à 7 personnes dans un esprit cosy et raffiné.
+        </p>
+
+        <h3 style="color:var(--cream); font-size:1.15rem; margin-top:34px;" data-i18n="house.equipTitle">Équipements</h3>
+        <div class="amenities">
+          <!-- MODIFIABLE ICI : liste de l'électroménager / équipements -->
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.1">Cuisine équipée (four, plaques, micro-ondes)</span></div>
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.2">Réfrigérateur &amp; congélateur</span></div>
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.3">Lave-linge</span></div>
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.4">Lave-vaisselle</span></div>
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.5">Machine à café</span></div>
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.6">Wi-Fi haut débit</span></div>
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.7">Télévision écran plat</span></div>
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.8">Chauffage central</span></div>
+          <div class="amenity"><span class="dot"></span><span data-i18n="eq.10">Jardin &amp; salon d'extérieur</span></div>
+        </div>
+      </div>
+
+      <div class="fade-in">
+        <h3 style="color:var(--cream); font-size:1.15rem;" data-i18n="house.servicesTitle">Services proposés</h3>
+        <ul class="checklist">
+          <!-- MODIFIABLE ICI : services -->
+          <li data-i18n="srv.1">Draps &amp; serviettes fournis pour toute la maison</li>
+          <li data-i18n="srv.2">Ménage de fin de séjour</li>
+          <li data-i18n="srv.3">Lit bébé sur demande (gratuit)</li>
+        </ul>
+
+        <h3 style="color:var(--cream); font-size:1.15rem; margin-top:34px;" data-i18n="house.galleryTitle">Galerie</h3>
+        <div class="gallery" style="margin-top:16px;">
+          <!-- MODIFIABLE ICI : galerie photo complète -->
+          <div class="ph-img"><img src="images/galerie1.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+          <div class="ph-img"><img src="images/galerie2.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+          <div class="ph-img"><img src="images/galerie3.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+          <div class="ph-img"><img src="images/galerie4.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+          <div class="ph-img"><img src="images/galerie5.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+          <div class="ph-img"><img src="images/galerie6.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="awning"></div>
+
+<!-- ================= TROUVILLE / DEAUVILLE ================= -->
+<section id="region">
+  <div class="container">
+    <div class="region-layout">
+      <div class="region-photos fade-in">
+        <!-- MODIFIABLE ICI : photos de la région -->
+        <div class="ph-img"><img src="images/planches.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+        <div class="ph-img"><img src="images/port.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+        <div class="ph-img"><img src="images/casino.jpg" onerror="this.style.display='none'" alt=""><span data-i18n="gallery.ph">Photo à ajouter</span></div>
+      </div>
+      <div class="fade-in">
+        <span class="eyebrow" data-i18n="region.eyebrow">Dans les environs</span>
+        <h2 data-i18n="region.title">Trouville-sur-Mer &amp; Deauville</h2>
+        <p style="margin-top:16px; color:#3c4a58;" data-i18n="region.text">
+          Trouville, authentique cité balnéaire chère aux peintres impressionnistes, séduit avec ses planches en bois le long de la plage, son port de pêche animé et son marché couvert. À quelques minutes à pied, Deauville et ses célèbres planches, son casino et ses villas Belle Époque offrent une promenade élégante face à l'océan.
+        </p>
+
+        <div class="activities">
+          <!-- MODIFIABLE ICI : activités -->
+          <div class="activity">
+            <span class="num">01</span>
+            <div><h4 data-i18n="act.1.title">Les planches de Trouville</h4><p data-i18n="act.1.text">Promenade en bois le long de la plage, cabines de bain colorées et vue sur l'estuaire de la Seine.</p></div>
+          </div>
+          <div class="activity">
+            <span class="num">02</span>
+            <div><h4 data-i18n="act.2.title">Le marché aux poissons</h4><p data-i18n="act.2.text">Poissons et fruits de mer fraîchement pêchés, à déguster sur place ou à emporter.</p></div>
+          </div>
+          <div class="activity">
+            <span class="num">03</span>
+            <div><h4 data-i18n="act.3.title">Les planches de Deauville &amp; le casino</h4><p data-i18n="act.3.text">La célèbre promenade des Planches, ses parasols colorés et son casino Belle Époque.</p></div>
+          </div>
+          <div class="activity">
+            <span class="num">04</span>
+            <div><h4 data-i18n="act.4.title">Balades &amp; nature</h4><p data-i18n="act.4.text">Corniche normande, sentiers du bord de mer et marchés de producteurs locaux le week-end.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="awning"></div>
+
+<!-- ================= RESERVATION ================= -->
+<section id="booking">
+  <div class="container">
+    <div class="intro fade-in">
+      <span class="eyebrow" data-i18n="booking.eyebrow">Réservation</span>
+      <h2 data-i18n="booking.title">Choisissez vos dates</h2>
+      <p data-i18n="booking.text">Sélectionnez votre date d'arrivée puis votre date de départ. Les dates déjà réservées apparaissent grisées. Votre demande sera confirmée par e-mail par l'hôte sous 48h.</p>
+    </div>
+
+    <div class="booking-grid">
+      <!-- ----- CALENDRIER ----- -->
+      <div class="calendar-card fade-in">
+        <div class="cal-head">
+          <button id="prevMonth" aria-label="Mois précédent">←</button>
+          <h4 id="calMonthLabel"></h4>
+          <button id="nextMonth" aria-label="Mois suivant">→</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="legend">
+          <span><i class="i-av"></i><span data-i18n="cal.available">Disponible</span></span>
+          <span><i class="i-bl"></i><span data-i18n="cal.blocked">Déjà réservé</span></span>
+          <span><i class="i-sel"></i><span data-i18n="cal.selected">Sélectionné</span></span>
+        </div>
+
+        <div class="guests-block">
+          <span style="font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; color:var(--marine); display:block; margin-bottom:10px;" data-i18n="cal.guests">Voyageurs</span>
+
+          <div class="guest-row">
+            <div class="guest-label">
+              <strong data-i18n="cal.adults">Adultes</strong>
+              <small data-i18n="cal.adultsSub">18 ans et plus</small>
+            </div>
+            <div class="counter">
+              <button type="button" class="counterBtn" id="adultsMinus" aria-label="Retirer un adulte">−</button>
+              <span id="adultsCount">2</span>
+              <button type="button" class="counterBtn" id="adultsPlus" aria-label="Ajouter un adulte">+</button>
+            </div>
+          </div>
+
+          <div class="guest-row">
+            <div class="guest-label">
+              <strong data-i18n="cal.children">Enfants</strong>
+              <small data-i18n="cal.childrenSub">Moins de 18 ans</small>
+            </div>
+            <div class="counter">
+              <button type="button" class="counterBtn" id="childrenMinus" aria-label="Retirer un enfant">−</button>
+              <span id="childrenCount">0</span>
+              <button type="button" class="counterBtn" id="childrenPlus" aria-label="Ajouter un enfant">+</button>
+            </div>
+          </div>
+
+          <div id="childAges" class="child-ages"></div>
+
+          <p id="guestLimitNote" class="guestLimitNote" data-i18n="cal.guestLimit">7 voyageurs maximum.</p>
+
+          <button id="resetDates" style="background:none; border:none; color:var(--gold); font-size:.8rem; text-decoration:underline; margin-top:6px;" data-i18n="cal.reset">Réinitialiser</button>
+        </div>
+
+        <div class="summary-box" id="summaryBox">
+          <div class="row"><span data-i18n="cal.checkin">Arrivée</span><span id="sumIn">—</span></div>
+          <div class="row"><span data-i18n="cal.checkout">Départ</span><span id="sumOut">—</span></div>
+          <div class="row"><span data-i18n="cal.nights">Nuits</span><span id="sumNights">0</span></div>
+          <div class="row total"><span data-i18n="cal.total">Total estimé</span><span id="sumTotal">—</span></div>
+          <p style="font-size:.75rem; color:#b5493a; margin-top:10px;" data-i18n="cal.minNights">Séjour minimum : 2 nuits.</p>
+        </div>
+      </div>
+
+      <!-- ----- FORMULAIRE ----- -->
+      <div class="form-card fade-in">
+        <h3 data-i18n="form.title">Vos coordonnées</h3>
+        <p data-i18n="form.subtitle">Une fois votre demande envoyée, l'hôte vous confirme la réservation par e-mail.</p>
+
+        <form id="bookingForm">
+          <div class="field">
+            <label data-i18n="form.name">Nom complet</label>
+            <input type="text" id="fName" required>
+          </div>
+          <div class="two-col">
+            <div class="field">
+              <label data-i18n="form.email">E-mail</label>
+              <input type="email" id="fEmail" required>
+            </div>
+            <div class="field">
+              <label data-i18n="form.phone">Téléphone</label>
+              <input type="tel" id="fPhone">
+            </div>
+          </div>
+          <div class="field">
+            <label data-i18n="form.message">Message (optionnel)</label>
+            <textarea id="fMessage" rows="3" placeholder=""></textarea>
+          </div>
+          <button type="submit" class="submitBtn" id="submitBtn" data-i18n="form.submit">Envoyer la demande de réservation</button>
+          <p id="formStatus"></p>
+          <p class="formNote" data-i18n="form.note">En envoyant ce formulaire, votre messagerie s'ouvrira avec un e-mail pré-rempli à destination de l'hôte. Vous pouvez le compléter avant de l'envoyer.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="awning"></div>
+
+<!-- ================= AVIS ================= -->
+<section id="reviews">
+  <div class="container">
+    <div class="intro fade-in">
+      <span class="eyebrow" data-i18n="reviews.eyebrow">Ils ont séjourné ici</span>
+      <h2 data-i18n="reviews.title">Avis de nos voyageurs</h2>
+    </div>
+
+    <div class="reviews-summary fade-in">
+      <div class="reviews-avg" id="reviewsAvg">—</div>
+      <div class="reviews-stars" id="reviewsStars">★★★★★</div>
+      <div class="reviews-count" id="reviewsCount"></div>
+    </div>
+
+    <div class="reviews-carousel-wrap fade-in">
+      <div class="reviews-carousel" id="reviewsGrid">
+        <!-- généré automatiquement depuis CONFIG.reviews -->
+      </div>
+      <div class="carousel-controls">
+        <button class="arrowBtn" id="reviewsLeft">←</button>
+        <button class="arrowBtn" id="reviewsRight">→</button>
+      </div>
+    </div>
+
+    <div class="review-form-card fade-in">
+      <h3 data-i18n="reviews.formTitle">Laisser un avis</h3>
+      <p data-i18n="reviews.formSubtitle">Votre avis sera envoyé à l'hôte et publié après validation.</p>
+
+      <form id="reviewForm">
+        <div class="star-picker" id="starPicker">
+          <button type="button" data-star="1">★</button>
+          <button type="button" data-star="2">★</button>
+          <button type="button" data-star="3">★</button>
+          <button type="button" data-star="4">★</button>
+          <button type="button" data-star="5">★</button>
+        </div>
+        <div class="field">
+          <label data-i18n="form.name">Nom complet</label>
+          <input type="text" id="rName" required>
+        </div>
+        <div class="field">
+          <label data-i18n="reviews.comment">Votre commentaire</label>
+          <textarea id="rComment" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="submitBtn" data-i18n="reviews.submit">Envoyer mon avis</button>
+        <p id="reviewStatus"></p>
+        <p class="formNote" data-i18n="reviews.note">Votre messagerie s'ouvrira avec un e-mail pré-rempli à destination de l'hôte, qui publiera votre avis après validation.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIGHTBOX (photo agrandie) ================= -->
+<div id="lightbox">
+  <button id="lightboxClose" aria-label="Fermer">✕</button>
+  <div id="lightboxMedia">
+    <button class="lb-nav" id="lbPrev" aria-label="Précédent">←</button>
+    <img id="lbImg" src="" alt="">
+    <video id="lbVideo" autoplay muted loop playsinline></video>
+    <button class="lb-nav" id="lbNext" aria-label="Suivant">→</button>
+  </div>
+  <div class="lb-dots" id="lbDots"></div>
+  <div id="lightboxCaption"></div>
+  <div id="lightboxCounter"></div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="brand" style="justify-content:center;">
+      <img src="images/logo.png" alt="Logo La Petite Normande">
+    </div>
+    <span class="script" style="font-size:1.6rem;">La petite Normande</span>
+    <p data-i18n="footer.address">Trouville-sur-Mer, Calvados, Normandie</p>
+    <p id="footerEmail">contact@lapetitenormande.fr</p>
+    <p data-i18n="footer.rights">© La Petite Normande — Tous droits réservés</p>
+  </div>
+</footer>
+
+
+<script>
+/* =========================================================================
+   ZONE DE CONFIGURATION — À MODIFIER PAR L'HÔTE
+   =========================================================================
+   Tout ce dont vous avez besoin pour gérer le site au quotidien est ici.
+   Pas besoin de toucher au reste du code.
+   ========================================================================= */
+const CONFIG = {
+
+  // --- Image ou vidéo d'accueil ---
+  heroType: "photo",
+
+  // --- Coordonnées de l'hôte ---
+  hostEmail: "cteneau@hotmail.fr",
+
+  // --- Tarification ---
+  currency: "€",
+
+  // Prix par défaut hors saison (dimanche-jeudi)
+  pricePerNight: 170,
+  // Prix par défaut hors saison (vendredi-samedi)
+  priceWeekend: 200,
+
+  // Périodes tarifaires : price = dimanche-jeudi, priceWeekend = vendredi-samedi
+ pricingPeriods: [
+  { label:"Haute saison (juillet-août)", start:"2026-07-01", end:"2026-08-31", price:220, priceWeekend:249 },
+  { label:"Toussaint",                   start:"2026-10-16", end:"2026-10-31", price:190, priceWeekend:220 },
+  { label:"Noël",                        start:"2026-12-24", end:"2026-12-26", price:250, priceWeekend:250 },
+  { label:"Réveillon",                   start:"2026-12-31", end:"2027-01-02", price:250, priceWeekend:250 },
+  { label:"Fêtes fin d'année",           start:"2026-12-18", end:"2026-12-23", price:220, priceWeekend:220 },
+  { label:"Fêtes fin d'année 2",         start:"2026-12-27", end:"2026-12-30", price:220, priceWeekend:220 },
+  { label:"Vacances fév",                start:"2027-02-05", end:"2027-02-20", price:185, priceWeekend:210 },
+  { label:"Mars",                        start:"2027-03-07", end:"2027-03-25", price:185, priceWeekend:200 },
+  { label:"Pâques",                      start:"2027-03-26", end:"2027-03-28", price:240, priceWeekend:240 },
+  { label:"Mars 2",                      start:"2027-03-29", end:"2027-04-17", price:185, priceWeekend:230 },
+  { label:"Vacances prt",                start:"2027-04-18", end:"2027-04-29", price:185, priceWeekend:220 },
+  { label:"Pont mai",                    start:"2027-05-05", end:"2027-05-08", price:240, priceWeekend:240 },
+  { label:"Mai",                         start:"2027-04-30", end:"2027-05-31", price:200, priceWeekend:240 },
+  { label:"Juin",                        start:"2027-06-01", end:"2027-07-01", price:200, priceWeekend:220 },
+  { label:"14 juillet",                  start:"2027-07-13", end:"2027-07-15", price:249, priceWeekend:249 },
+  { label:"Juillet",                     start:"2027-07-02", end:"2027-08-29", price:220, priceWeekend:249 }
+],
+
+
+  // --- Dates déjà réservées ---
+  // Ajoutez ici chaque date bloquée au format "AAAA-MM-JJ", séparées par une virgule.
+  // C'est VOUS qui mettez cette liste à jour après avoir validé une demande par e-mail.
+  // Exemple : "2026-08-14", "2026-08-15", "2026-08-16"
+  blockedDates: [
+    "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17",
+    "2026-08-01", "2026-08-02", "2026-08-03"
+  ],
+
+  // --- Mois affiché en premier dans le calendrier (0 = mois actuel) ---
+  startMonthOffset: 0,
+
+  // --- Avis publiés ---
+  // Quand vous recevez un avis par mail et que vous le validez, ajoutez-le
+  // ici. "rating" va de 1 à 5. Séparez chaque avis par une virgule.
+  reviews: [
+    { name:"Philippe", rating:5, text:"La maison est charmante, bien aménagée et bien équipée pour recevoir ma famille de 5 personnes. Pouvoir profiter d'un espace extérieur est très agréable. La maison est très bien située, à quelques minutes à pied des restaurants et commerces et de la plage. Pour nous, tout était parfait !" },
+    { name:"Joanna", rating:5, text:"The house was very well located, just a 10min walk into town and even closer to an excellent bakery. We stayed during an exceptionally hot week where AC or some fans have helped, but we appreciated these 36+ degree temperatures are not normal for this area! However, being so close to the beach certainly helped us to stay cool! A gorgeous little house in a beautiful town." },
+    { name:"Amandine", rating:5, text:"Logement moderne et très agréable pour un long week end. Très bien situé. Accueil et contact parfaits" },
+	{ name:"Eléonore", rating:5, text:"Tout était parfait" },
+	{ name:"Macoura", rating:5, text:"Bon séjour avec ma famille. Photos et description conformes." },
+	{ name:"Fabienne", rating:5, text:"Une maison charmante et fonctionnelle, amenagée avec goût! L'accueil était simple et efficace. Un pied à terre agréable pour la famille, point de départ pour decouvrir les jolies villes balneaires de Normandie." },
+	{ name:"Solène", rating:5, text:"Logement agréable et bien situé, avec un petit jardin très appréciable. Nous avons pu nous garer facilement et gratuitement devant la maison. Matthias le concierge a été très réactif et flexible sur l'arrivée et le départ, ce que nous avons apprécié. Merci pour ce séjour !" },
+	{ name:"Warner", rating:5, text:"Super hôte que je recommande vivement. Maison très agréable offrant de super prestations et un environnement idéal. La communication et l’accueil ont été parfait! Vraiment à refaire autant que possible !" },
+	{ name:"Mathieu", rating:5, text:"Conforme aux photos, appartement propre, je recommande." },
+	{ name:"Andrei", rating:5, text:"Super séjour à Trouville . Maison idéalement située, proche du centre, casino et plage" },
+	{ name:"Mathieu", rating:5, text:"Simple, agréable et efficace ! Que demander de plus ? 😉" },
+	{ name:"Vincent", rating:5, text:"Séjour très agréable" },
+	{ name:"Mark", rating:5, text:"Maison très joliment décorée avec beaucoup d'espace. Nous nous y sommes sentis très à l'aise, rien ne manquait. Nous reviendrons à tout moment." },
+	{ name:"Jalila", rating:5, text:"C’était parfait merci" },
+	{ name:"Anca", rating:5, text:"Au top !" },
+	{ name:"Katia", rating:5, text:"Logement très joli et très bien placé. Il est agréable, la literie est très confortable. Proche de tout et calme à la fois." },
+	{ name:"Audelia", rating:5, text:"Belle maison , PROPRE, nous avons bien  été accueilli , maison avec beaucoup de charmes en accord avec la région. Je recommande." },
+	{ name:"Romain", rating:5, text:"Séjour agréable, maison de pêcheur à proximité des commerces et du centre de Trouville. Un plus pour la cour et la disponibilité et flexibilité de l’hôte." },
+	{ name:"Caroline", rating:5, text:"Maison agréable et accueillante, la communication a été très facile avec beaucoup de réactivité !" },
+	{ name:"Guitard", rating:5, text:"maison très très bien placée. parking très dispo devant la maison. Maison avec récente restauration. je recommande" },
+	{ name:"Blandine", rating:5, text:"Nous venons de passer un agréable séjour à Trouville ! La maison est top , rénovée , très bien décorée et bien équipée ! Une boulangerie et carrefour City à deux pas ! Très pratique. Proche de la plage de Trouville 20 min à pied !  Encore merci à Claire !" },
+	{ name:"Wilfried Junior", rating:5, text:"Logement bien placé, à quelques minutes des commerce et de la plage de Trouville. L’accompagnement et la communication avec Claire était très agréable, rien à redire. La maison a un extérieur qui fait complètement la différence, je recommande" },
+	{ name:"Nadia Delphine", rating:5, text:"Le logement était fidèle à la description. À 15min à pied du centre-ville tout en bénéficiant de places gratuites dans la rue. Maison bien agencée afin que tout le monde soit à son aise (6 adultes)." },
+	{ name:"Benjamin", rating:5, text:"Tout s’est très bien passé. Merci pour tout." },
+	{ name:"Thibaut", rating:5, text:"Tres beau logement et tres bien placé ! Je recommande" },
+	{ name:"Saïd", rating:5, text:"Excellent séjour dans la maison de Claire. Il y a tout ce qu'il faut pour passer un moment agréable : une jolie maison bien décorée, très propre avec un petit jardin pour manger dehors. Tout est accessible à pied, le centre ville de Trouville et tous ses commerces, ainsi que la plage. La gare est toute proche également. Nous recommandons fortement Claire et nous reviendrons avec plaisir. Maurine et Saïd" },
+	{ name:"Eléonore", rating:5, text:"Tres bien place, on a pu tout faire a pied. Logement soigne." },
+	{ name:"Johan", rating:5, text:"Maison sympathique, bien équipée et refaite à neuf , nous avons passé un agréable séjour!" },
+	{ name:"Josephine", rating:5, text:"Très bon séjour, L’appartement est très bien situé et il est très agréable. Un plaisir de sejourner chez Claire, nous reviendrons !" },
+	{ name:"Céline", rating:5, text:"Excellent séjour dans la maison de Claire qui était parfaitement conforme aux descriptif et photos. Emplacement idéal. Terrasse très agréable. Nous reviendrons avec grand plaisir !" },
+	{ name:"Larysa", rating:5, text:"La maison de Claire est très bien décorée et il y a tout ce qu’il faut pour passer un bon séjour, les chambres sont spacieuses et la terrasse permet de profiter de l’extérieur. Sa location est idéale pour visiter à pied Deauville et Trouville (plages, restaurants,  marchés etc) sans problème. Nous avons passé un très bon séjour et nous allons revenir avec plaisir!" },
+	{ name:"Katie", rating:5, text:"Our stay was perfect! Beautiful space - kitchen with all amenities needed, children’s toys that my kids loved and we used the outdoor space every day. Great location for Trouville beach and an easy walk over to Deauville. We also explored Honfleur and Etretat during our stay. We would love to come again at some point. Thank you to Claire and Matthias!" },
+	{ name:"Emmanuelle", rating:5, text:"Très bon week-end sur Trouville. La maison est très bien aménagée et bien située. Je recommande" },
+	{ name:"Gatien", rating:5, text:"Le logement était très propre et très proche du centre ville de trouville, je le recommande vivement." },
+	{ name:"Louis", rating:5, text:"Hôte arrangeant, logement conforme à la description et aux photos (toujours effet de grand angle en arrivant)" },
+	{ name:"Christophe", rating:4, text:"Maison aménagée avec goût, chambres spacieuses et lits confortables. J’ai trouvé la cuisine un peu petite et de la promiscuité avec les voisins dans le jardinet." },
+	{ name:"Tracy", rating:5, text:"We so appreciated the lovely outdoor space!" }
+  ]
+};
+/* ========================================================================= */
+
+
+/* ---------------------- TRADUCTIONS (FR / EN) ---------------------- */
+const I18N = {
+  fr: {
+    "nav.home":"Accueil", "nav.house":"La maison", "nav.region":"Trouville & Deauville", "nav.booking":"Réservation",
+    "hero.script":"Bienvenue à", "hero.title":"La petite Normande",
+    "hero.subtitle":"Une maison de charme au cœur de Trouville-sur-Mer, à deux pas du centre ville et du marché aux poissons. Le temps d'un séjour, posez vos valises près de la mer.",
+    "hero.cta1":"Vérifier les disponibilités", "hero.cta2":"Découvrir la maison",
+    "intro.eyebrow":"L'esprit de la maison",
+    "intro.title":"Un pied-à-terre normand, entre mer et charme d'antan",
+    "intro.text":"La Petite Normande a été pensée comme un cocon lumineux et chaleureux : parquet ancien, tons bleus et blancs, petites attentions... Chaque pièce raconte un peu de Trouville.",
+    "room.salon":"Le salon", "room.kitchen":"La cuisine", "room.bed1":"Chambre 1",
+    "room.bed2":"Chambre 2", "room.bed3":"Chambre 3", "room.bath":"Salle de bain", "room.yard":"Jardin",
+    "house.eyebrow":"La maison", "house.title":"Tout le confort d'une maison, l'attention d'une hôte",
+    "house.text":"3 chambres, 1 salle de bain, cuisine équipée et un joli petit jardin. La maison accueille jusqu'à 7 personnes dans un esprit cosy et raffiné.",
+    "house.equipTitle":"Équipements", "house.servicesTitle":"Services supplémentaires", "house.galleryTitle":"Galerie",
+    "eq.1":"Cuisine équipée (four, plaques, micro-ondes)", "eq.2":"Réfrigérateur & congélateur",
+    "eq.3":"Lave-vaisselle", "eq.4":"Machine à café", "eq.5":"Wi-Fi", "eq.6":"Télévision","eq.7":"ventilateur sur demande",
+    "eq.7":"Chauffage", "eq.8":"Fer & planche à repasser", "eq.10":"Jardin & salon d'extérieur",
+    "srv.1":"Draps & serviettes par parrure de lit 25€", "srv.2":"Ménage de fin de séjour 75€", "srv.3":"Lit bébé sur demande(gratuit)",
+    "gallery.ph":"Photo à ajouter",
+    "region.eyebrow":"Dans les environs", "region.title":"Trouville-sur-Mer & Deauville",
+    "region.text":"Trouville, charmante station balnéaire au charme authentique, séduit par sa grande plage, son marché aux poissons et ses nombreux restaurants. À quelques minutes à pied, Deauville et ses célèbres planches, son casino et ses villas Belle Époque offrent une promenade élégante face à l’océan, idéale pour profiter pleinement de la Normandie.",
+    "act.1.title":"Les planches de Deauville", "act.1.text":"Promenade mythique en bois le long de la plage, bordée de cabines aux noms de stars du cinéma avec magnifique vue sur la Manche.",
+    "act.2.title":"Le marché aux poissons", "act.2.text":"Poissons et fruits de mer fraîchement pêchés, à déguster sur place ou à emporter.",
+    "act.3.title":"Les Cures Marines", "act.3.text":"Les Cures Marines, véritable havre de bien-être face à la mer, proposent un spa élégant avec soins, massages et moments de détente pour une parenthèse relaxante.",
+    "act.4.title":"Restauration", "act.4.text":"La cuisine locale se savoure autour de délicieuses moules, accompagnées de spécialités normandes et de produits frais de la mer, dans les nombreux restaurants de Trouville.",
+    "booking.eyebrow":"Réservation", "booking.title":"Choisissez vos dates",
+    "booking.text":"Sélectionnez votre date d'arrivée puis votre date de départ. Les dates déjà réservées apparaissent grisées. Votre demande sera confirmée par e-mail par l'hôte sous 48h.",
+    "cal.available":"Disponible", "cal.blocked":"Déjà réservé", "cal.selected":"Sélectionné",
+    "cal.guests":"Voyageurs", "cal.reset":"Réinitialiser",
+    "cal.adults":"Adultes", "cal.adultsSub":"18 ans et plus",
+    "cal.children":"Enfants", "cal.childrenSub":"Moins de 18 ans",
+    "cal.childAge":"Âge de l'enfant", "cal.guestLimit":"7 voyageurs maximum.",
+    "cal.checkin":"Arrivée", "cal.checkout":"Départ", "cal.nights":"Nuits", "cal.total":"Total estimé",
+    "cal.minNights":"Séjour minimum : 2 nuits.",
+    "form.title":"Vos coordonnées", "form.subtitle":"Une fois votre demande envoyée, l'hôte vous confirme la réservation par e-mail.",
+    "form.name":"Nom complet", "form.email":"E-mail", "form.phone":"Téléphone", "form.message":"Message (optionnel)",
+    "form.submit":"Envoyer la demande de réservation",
+    "form.note":"En envoyant ce formulaire, votre messagerie s'ouvrira avec un e-mail pré-rempli à destination de l'hôte. Vous pouvez le compléter avant de l'envoyer.",
+    "form.selectDates":"Merci de sélectionner vos dates dans le calendrier.",
+    "nav.reviews":"Avis",
+    "reviews.eyebrow":"Ils ont séjourné ici", "reviews.title":"Avis de nos voyageurs",
+    "reviews.formTitle":"Laisser un avis", "reviews.formSubtitle":"Votre avis sera envoyé à l'hôte et publié après validation.",
+    "reviews.comment":"Votre commentaire", "reviews.submit":"Envoyer mon avis",
+    "reviews.note":"Votre messagerie s'ouvrira avec un e-mail pré-rempli à destination de l'hôte, qui publiera votre avis après validation.",
+    "reviews.selectStars":"Merci de sélectionner une note.",
+    "reviews.basedOn":(n)=> n>1 ? `Basé sur ${n} avis` : `Basé sur ${n} avis`,
+    "reviews.mailSubject":"Nouvel avis - La Petite Normande",
+    "reviews.mailBody":(d)=>`Bonjour,\n\nVoici mon avis sur mon séjour à La Petite Normande :\n\nNote : ${d.rating} / 5\nNom : ${d.name}\n\nCommentaire :\n${d.comment}`,
+    "footer.address":"Trouville-sur-Mer, Calvados, Normandie", "footer.rights":"© La Petite Normande — Tous droits réservés",
+    monthNames:["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+    dowNames:["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],
+    nightWord:(n)=> n>1?"nuits":"nuit",
+    mailSubject:"Demande de réservation - La Petite Normande",
+    mailBody:(d)=>`Bonjour,\n\nJe souhaite réserver La Petite Normande aux dates suivantes :\n\nArrivée : ${d.checkin}\nDépart : ${d.checkout}\nNombre de nuits : ${d.nights}\nVoyageurs : ${d.guests}\nTotal estimé : ${d.total}\n\nMes coordonnées :\nNom : ${d.name}\nE-mail : ${d.email}\nTéléphone : ${d.phone}\n\nMessage :\n${d.message}\n\nMerci de me confirmer la disponibilité.`
+  },
+  en: {
+    "nav.home":"Home", "nav.house":"The house", "nav.region":"Trouville & Deauville", "nav.booking":"Booking",
+    "hero.script":"Welcome to", "hero.title":"La petite Normande",
+    "hero.subtitle":"A charming house in the heart of Trouville-sur-Mer, just steps away from the town center and the fish market. Take a break and set down your bags by the sea..",
+    "hero.cta1":"Check availability", "hero.cta2":"Discover the house",
+    "intro.eyebrow":"The spirit of the house",
+    "intro.title":"A Norman pied-à-terre, between sea and old-world charm",
+    "intro.text":"La Petite Normande was designed as a bright, warm cocoon: old parquet floors, blue and white tones, thoughtful little details... every room tells a bit of Trouville's story.",
+    "room.salon":"Living room", "room.kitchen":"Kitchen", "room.bed1":"Bedroom 1",
+    "room.bed2":"Bedroom 2", "room.bed3":"Bedroom 3", "room.bath":"Bathroom", "room.yard":"The garden",
+    "house.eyebrow":"The house", "house.title":"All the comfort of a home, the care of a host",
+    "house.text":"3 bedrooms, 1 bathroom, a fully equipped kitchen and a lovely garden. The house welcomes up to 7 guests in a cosy, refined atmosphere.",
+    "house.equipTitle":"Amenities", "house.servicesTitle":"Additional services", "house.galleryTitle":"Gallery",
+    "eq.1":"Equipped kitchen (oven, hob, microwave)", "eq.2":"Fridge & freezer", 
+    "eq.3":"Dishwasher", "eq.4":"Coffee machine", "eq.5":"Wi-Fi", "eq.6":"TV", 
+	"eq.7":"heating", "eq.8":"Iron & ironing board", "eq.10":"Garden & outdoor lounge",
+    "srv.1":"Bed linen and towels: €25 per set.", "srv.2":"End-of-stay cleaning €75", "srv.3":"Baby cot on request (free)", 
+    "gallery.ph":"Photo to be added",
+    "region.eyebrow":"Nearby", "region.title":"Trouville-sur-Mer & Deauville",
+    "region.text":"Trouville, a charming seaside resort with an authentic feel, captivates visitors with its vast beach, fish market, and numerous restaurants. Just a short walk away, Deauville with its famous boardwalk, casino, and Belle Époque villas offers an elegant seaside promenade, perfect for fully enjoying Normandy.",
+    "act.1.title":"The Deauville boardwalk", "act.1.text":"An iconic wooden boardwalk along the beach, lined with cabins named after movie stars and offering a magnificent view of the English Channel.",
+    "act.2.title":"The fish market", "act.2.text":"Freshly caught fish and seafood, to enjoy on the spot or take away.",
+    "act.3.title":"Les Cures Marines", "act.3.text":"Les Cures Marines, a true haven of well-being facing the sea, offers an elegant spa featuring treatments, massages, and moments of relaxation for a soothing getaway.",
+    "act.4.title":"The Restoration", "act.4.text":"Local cuisine can be savored featuring delicious mussels alongside Norman specialties and fresh seafoodin the many restaurants of Trouville.",
+    "booking.eyebrow":"Booking", "booking.title":"Choose your dates",
+    "booking.text":"Select your check-in date, then your check-out date. Dates already booked appear greyed out. Your request will be confirmed by email by the host within 48h.",
+    "cal.available":"Available", "cal.blocked":"Already booked", "cal.selected":"Selected",
+    "cal.guests":"Guests", "cal.reset":"Reset",
+    "cal.adults":"Adults", "cal.adultsSub":"Age 18 and over",
+    "cal.children":"Children", "cal.childrenSub":"Under 18",
+    "cal.childAge":"Child's age", "cal.guestLimit":"Maximum 7 guests.",
+    "cal.checkin":"Check-in", "cal.checkout":"Check-out", "cal.nights":"Nights", "cal.total":"Estimated total",
+    "cal.minNights":"Minimum stay: 2 nights.",
+    "form.title":"Your details", "form.subtitle":"Once you send your request, the host will confirm the booking by email.",
+    "form.name":"Full name", "form.email":"Email", "form.phone":"Phone", "form.message":"Message (optional)",
+    "form.submit":"Send booking request",
+    "form.note":"Sending this form will open your mail app with a pre-filled email to the host. You can edit it before sending.",
+    "form.selectDates":"Please select your dates in the calendar first.",
+    "nav.reviews":"Reviews",
+    "reviews.eyebrow":"Our guests say", "reviews.title":"Guest reviews",
+    "reviews.formTitle":"Leave a review", "reviews.formSubtitle":"Your review will be sent to the host and published after approval.",
+    "reviews.comment":"Your comment", "reviews.submit":"Send my review",
+    "reviews.note":"Your mail app will open with a pre-filled email to the host, who will publish your review after approval.",
+    "reviews.selectStars":"Please select a rating.",
+    "reviews.basedOn":(n)=> n>1 ? `Based on ${n} reviews` : `Based on ${n} review`,
+    "reviews.mailSubject":"New review - La Petite Normande",
+    "reviews.mailBody":(d)=>`Hello,\n\nHere is my review of my stay at La Petite Normande:\n\nRating: ${d.rating} / 5\nName: ${d.name}\n\nComment:\n${d.comment}`,
+    "footer.address":"Trouville-sur-Mer, Calvados, Normandy", "footer.rights":"© La Petite Normande — All rights reserved",
+    monthNames:["January","February","March","April","May","June","July","August","September","October","November","December"],
+    dowNames:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+    nightWord:(n)=> n>1?"nights":"night",
+    mailSubject:"Booking request - La Petite Normande",
+    mailBody:(d)=>`Hello,\n\nI would like to book La Petite Normande for the following dates:\n\nCheck-in: ${d.checkin}\nCheck-out: ${d.checkout}\nNumber of nights: ${d.nights}\nGuests: ${d.guests}\nEstimated total: ${d.total}\n\nMy details:\nName: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\n\nMessage:\n${d.message}\n\nPlease confirm availability.`
+  }
+};
+
+let currentLang = "fr";
+
+function applyI18n(){
+  const dict = I18N[currentLang];
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(dict[key]) el.textContent = dict[key];
+  });
+  document.getElementById("langSwitch").textContent = currentLang === "fr" ? "EN" : "FR";
+  document.getElementById("footerEmail").textContent = CONFIG.hostEmail;
+  renderCalendar();
+  updateSummary();
+  if(typeof renderGuests === "function") renderGuests();
+  if(typeof renderReviews === "function") renderReviews();
+}
+
+document.getElementById("langSwitch").addEventListener("click", ()=>{
+  currentLang = currentLang === "fr" ? "en" : "fr";
+  applyI18n();
+});
+
+document.querySelectorAll(".langBtn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    currentLang = btn.getAttribute("data-lang");
+    applyI18n();
+    document.getElementById("langGate").classList.add("hidden");
+  });
+});
+
+/* ---------------------- MENU MOBILE ---------------------- */
+document.getElementById("navToggle").addEventListener("click", ()=>{
+  document.getElementById("mainNav").classList.toggle("open");
+});
+document.querySelectorAll("#mainNav a").forEach(a=>{
+  a.addEventListener("click", ()=> document.getElementById("mainNav").classList.remove("open"));
+});
+
+/* ---------------------- CARROUSEL ---------------------- */
+const roomCarousel = document.getElementById("roomCarousel");
+document.getElementById("carLeft").addEventListener("click", ()=> roomCarousel.scrollBy({left:-360, behavior:"smooth"}));
+document.getElementById("carRight").addEventListener("click", ()=> roomCarousel.scrollBy({left:360, behavior:"smooth"}));
+
+const reviewsCarousel = document.getElementById("reviewsGrid");
+document.getElementById("reviewsLeft").addEventListener("click", ()=> reviewsCarousel.scrollBy({left:-340, behavior:"smooth"}));
+document.getElementById("reviewsRight").addEventListener("click", ()=> reviewsCarousel.scrollBy({left:340, behavior:"smooth"}));
+
+/* ---------------------- ANIMATIONS AU SCROLL ---------------------- */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("show"); });
+},{threshold:.15});
+document.querySelectorAll(".fade-in").forEach(el=> observer.observe(el));
+
+/* ---------------------- CALENDRIER ---------------------- */
+let viewDate = new Date();
+viewDate.setDate(1);
+viewDate.setMonth(viewDate.getMonth() + CONFIG.startMonthOffset);
+
+let selection = { start:null, end:null };
+
+function toISO(date){
+  return date.getFullYear() + "-" + String(date.getMonth()+1).padStart(2,"0") + "-" + String(date.getDate()).padStart(2,"0");
+}
+function isBlocked(iso){ return CONFIG.blockedDates.includes(iso); }
+function isPast(date){
+  const today = new Date(); today.setHours(0,0,0,0);
+  return date < today;
+}
+function hasBlockedBetween(start, end){
+  let d = new Date(start); d.setDate(d.getDate()+1);
+  while(d < end){
+    if(isBlocked(toISO(d))) return true;
+    d.setDate(d.getDate()+1);
+  }
+  return false;
+}
+
+function renderCalendar(){
+  const dict = I18N[currentLang];
+  const grid = document.getElementById("calGrid");
+  grid.innerHTML = "";
+
+  document.getElementById("calMonthLabel").textContent =
+    dict.monthNames[viewDate.getMonth()] + " " + viewDate.getFullYear();
+
+  dict.dowNames.forEach(d=>{
+    const el = document.createElement("div");
+    el.className = "cal-dow"; el.textContent = d;
+    grid.appendChild(el);
+  });
+
+  const year = viewDate.getFullYear(), month = viewDate.getMonth();
+  const firstDay = new Date(year, month, 1);
+  let startOffset = firstDay.getDay() - 1; // lundi = 0
+  if(startOffset < 0) startOffset = 6;
+
+  for(let i=0;i<startOffset;i++){
+    const el = document.createElement("div");
+    el.className = "cal-day empty";
+    grid.appendChild(el);
+  }
+
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  for(let d=1; d<=daysInMonth; d++){
+    const date = new Date(year, month, d);
+    const iso = toISO(date);
+    const el = document.createElement("div");
+    el.className = "cal-day";
+    el.textContent = d;
+
+    if(isPast(date)){
+      el.classList.add("past");
+    } else if(isBlocked(iso)){
+      el.classList.add("blocked");
+    } else {
+      el.classList.add("available");
+      el.addEventListener("click", ()=> handleDayClick(date));
+    }
+
+    if(selection.start && iso === toISO(selection.start)) el.classList.add("selected");
+    if(selection.end && iso === toISO(selection.end)) el.classList.add("selected");
+    if(selection.start && selection.end && date > selection.start && date < selection.end) el.classList.add("in-range");
+
+    grid.appendChild(el);
+  }
+}
+
+const MIN_NIGHTS = 2;
+
+function handleDayClick(date){
+  if(!selection.start || (selection.start && selection.end)){
+    selection = { start:date, end:null };
+  } else {
+    if(date <= selection.start){
+      selection = { start:date, end:null };
+    } else if(hasBlockedBetween(selection.start, date)){
+      selection = { start:date, end:null };
+    } else {
+      const nights = Math.round((date - selection.start) / 86400000);
+      if(nights < MIN_NIGHTS){
+        // Moins de 2 nuits : on déplace juste l'arrivée
+        selection = { start:date, end:null };
+      } else {
+        selection.end = date;
+      }
+    }
+  }
+  renderCalendar();
+  updateSummary();
+}
+
+document.getElementById("resetDates").addEventListener("click", ()=>{
+  selection = { start:null, end:null };
+  renderCalendar(); updateSummary();
+});
+document.getElementById("prevMonth").addEventListener("click", ()=>{
+  viewDate.setMonth(viewDate.getMonth()-1); renderCalendar();
+});
+document.getElementById("nextMonth").addEventListener("click", ()=>{
+  viewDate.setMonth(viewDate.getMonth()+1); renderCalendar();
+});
+
+function getPriceForDate(date){
+  const iso = toISO(date);
+  const day = date.getDay();
+  const isWeekend = day === 5 || day === 6;
+  const periods = CONFIG.pricingPeriods || [];
+  for(const p of periods){
+    if(iso >= p.start && iso <= p.end){
+      return isWeekend && p.priceWeekend != null ? p.priceWeekend : p.price;
+    }
+  }
+  return isWeekend && CONFIG.priceWeekend != null ? CONFIG.priceWeekend : CONFIG.pricePerNight;
+}
+
+function updateSummary(){
+  const dict = I18N[currentLang];
+  const fmt = (d)=> d ? d.toLocaleDateString(currentLang==="fr"?"fr-FR":"en-GB", {day:"2-digit", month:"short", year:"numeric"}) : "—";
+  document.getElementById("sumIn").textContent = fmt(selection.start);
+  document.getElementById("sumOut").textContent = fmt(selection.end);
+
+  let nights = 0, total = "—";
+  if(selection.start && selection.end){
+    nights = Math.round((selection.end - selection.start) / 86400000);
+    let sum = 0;
+    let d = new Date(selection.start);
+    for(let i=0; i<nights; i++){
+      sum += getPriceForDate(d);
+      d.setDate(d.getDate()+1);
+    }
+    total = sum + " " + CONFIG.currency;
+  }
+  document.getElementById("sumNights").textContent = nights;
+  document.getElementById("sumTotal").textContent = total;
+}
+
+/* ---------------------- FORMULAIRE / ENVOI MAIL ---------------------- */
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const dict = I18N[currentLang];
+  const status = document.getElementById("formStatus");
+
+  if(!selection.start || !selection.end){
+    status.textContent = dict["form.selectDates"];
+    status.style.color = "#b5493a";
+    return;
+  }
+
+  const nights = Math.round((selection.end - selection.start) / 86400000);
+  let priceSum = 0;
+  let pd = new Date(selection.start);
+  for(let i=0; i<nights; i++){ priceSum += getPriceForDate(pd); pd.setDate(pd.getDate()+1); }
+  const total = priceSum + " " + CONFIG.currency;
+
+  const data = {
+    checkin: document.getElementById("sumIn").textContent,
+    checkout: document.getElementById("sumOut").textContent,
+    nights: nights,
+    guests: guestsSummaryText(),
+    total: total,
+    name: document.getElementById("fName").value,
+    email: document.getElementById("fEmail").value,
+    phone: document.getElementById("fPhone").value || "—",
+    message: document.getElementById("fMessage").value || "—"
+  };
+
+  const subject = encodeURIComponent(dict.mailSubject);
+  const body = encodeURIComponent(dict.mailBody(data));
+  window.location.href = `mailto:${CONFIG.hostEmail}?subject=${subject}&body=${body}`;
+
+  status.textContent = currentLang === "fr"
+    ? "Votre messagerie va s'ouvrir avec la demande pré-remplie."
+    : "Your mail app is opening with the pre-filled request.";
+  status.style.color = "#2f6f4f";
+});
+
+/* ---------------------- AVIS ---------------------- */
+function renderReviews(){
+  const dict = I18N[currentLang];
+  const reviews = CONFIG.reviews || [];
+  const grid = document.getElementById("reviewsGrid");
+  grid.innerHTML = "";
+
+  reviews.forEach(r=>{
+    const card = document.createElement("div");
+    card.className = "review-card";
+    card.innerHTML = `
+      <div class="stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div>
+      <p>${r.text}</p>
+      <div class="who">${r.name}</div>
+    `;
+    grid.appendChild(card);
+  });
+
+  if(reviews.length){
+    const avg = reviews.reduce((s,r)=> s + r.rating, 0) / reviews.length;
+    document.getElementById("reviewsAvg").textContent = avg.toFixed(1);
+    document.getElementById("reviewsStars").textContent = "★".repeat(Math.round(avg)) + "☆".repeat(5-Math.round(avg));
+    document.getElementById("reviewsCount").textContent = dict["reviews.basedOn"](reviews.length);
+  } else {
+    document.getElementById("reviewsAvg").textContent = "—";
+    document.getElementById("reviewsStars").textContent = "";
+    document.getElementById("reviewsCount").textContent = "";
+  }
+}
+
+let selectedRating = 0;
+document.querySelectorAll("#starPicker button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    selectedRating = parseInt(btn.getAttribute("data-star"), 10);
+    document.querySelectorAll("#starPicker button").forEach(b=>{
+      b.classList.toggle("active", parseInt(b.getAttribute("data-star"),10) <= selectedRating);
+    });
+  });
+});
+
+document.getElementById("reviewForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const dict = I18N[currentLang];
+  const status = document.getElementById("reviewStatus");
+
+  if(selectedRating === 0){
+    status.textContent = dict["reviews.selectStars"];
+    status.style.color = "#b5493a";
+    return;
+  }
+
+  const data = {
+    rating: selectedRating,
+    name: document.getElementById("rName").value,
+    comment: document.getElementById("rComment").value
+  };
+
+  const subject = encodeURIComponent(dict["reviews.mailSubject"]);
+  const body = encodeURIComponent(dict["reviews.mailBody"](data));
+  window.location.href = `mailto:${CONFIG.hostEmail}?subject=${subject}&body=${body}`;
+
+  status.textContent = currentLang === "fr"
+    ? "Votre messagerie va s'ouvrir avec votre avis pré-rempli."
+    : "Your mail app is opening with your pre-filled review.";
+  status.style.color = "#2f6f4f";
+});
+
+/* ---------------------- VOYAGEURS : ADULTES / ENFANTS + ÂGES ---------------------- */
+const MAX_GUESTS = 7;
+let guestState = { adults: 2, children: 0, childAges: [] };
+
+function renderGuests(){
+  const dict = I18N[currentLang];
+  document.getElementById("adultsCount").textContent = guestState.adults;
+  document.getElementById("childrenCount").textContent = guestState.children;
+
+  const total = guestState.adults + guestState.children;
+  document.getElementById("adultsPlus").disabled = total >= MAX_GUESTS;
+  document.getElementById("childrenPlus").disabled = total >= MAX_GUESTS;
+  document.getElementById("adultsMinus").disabled = guestState.adults <= 1;
+  document.getElementById("childrenMinus").disabled = guestState.children <= 0;
+
+  const note = document.getElementById("guestLimitNote");
+  note.textContent = total >= MAX_GUESTS ? dict["cal.guestLimit"] : "";
+
+  // synchronise le tableau des âges avec le nombre d'enfants
+  while(guestState.childAges.length < guestState.children) guestState.childAges.push(5);
+  while(guestState.childAges.length > guestState.children) guestState.childAges.pop();
+
+  const holder = document.getElementById("childAges");
+  holder.innerHTML = "";
+  guestState.childAges.forEach((age, i)=>{
+    const row = document.createElement("div");
+    row.className = "child-age-row";
+    const label = document.createElement("label");
+    label.textContent = (dict["cal.childAge"] || "Âge de l'enfant") + " " + (i+1);
+    const select = document.createElement("select");
+    for(let a=0; a<18; a++){
+      const opt = document.createElement("option");
+      opt.value = a; opt.textContent = a;
+      if(a === age) opt.selected = true;
+      select.appendChild(opt);
+    }
+    select.addEventListener("change", (e)=>{ guestState.childAges[i] = parseInt(e.target.value, 10); });
+    row.appendChild(label); row.appendChild(select);
+    holder.appendChild(row);
+  });
+}
+
+document.getElementById("adultsPlus").addEventListener("click", ()=>{
+  if(guestState.adults + guestState.children < MAX_GUESTS){ guestState.adults++; renderGuests(); }
+});
+document.getElementById("adultsMinus").addEventListener("click", ()=>{
+  if(guestState.adults > 1){ guestState.adults--; renderGuests(); }
+});
+document.getElementById("childrenPlus").addEventListener("click", ()=>{
+  if(guestState.adults + guestState.children < MAX_GUESTS){ guestState.children++; renderGuests(); }
+});
+document.getElementById("childrenMinus").addEventListener("click", ()=>{
+  if(guestState.children > 0){ guestState.children--; renderGuests(); }
+});
+
+function guestsSummaryText(){
+  const dict = I18N[currentLang];
+  let txt = guestState.adults + " " + (dict["cal.adults"] || "Adultes");
+  if(guestState.children > 0){
+    txt += ", " + guestState.children + " " + (dict["cal.children"] || "Enfants");
+    txt += " (" + (dict["cal.childAge"] || "âge") + ": " + guestState.childAges.join(", ") + ")";
+  }
+  return txt;
+}
+
+/* =====================================================================
+   GALERIES PAR PIÈCE — MODIFIABLE ICI
+   Chaque pièce a une liste de médias. Pour chaque média :
+   - type: "image" ou "video"
+   - src:  nom du fichier dans le dossier images/
+   - caption: légende affichée sous le média (FR uniquement pour l'instant)
+   ===================================================================== */
+const ROOM_GALLERIES = {
+  "room.salon":   [
+    { type:"image", src:"images/salon.jpg",  caption:"Le salon" },
+    { type:"image", src:"images/salon2.jpg", caption:"Le salon — autre angle" },
+    { type:"image", src:"images/salon3.jpg", caption:"Le salon — détail" },
+    { type:"image", src:"images/salon4.jpg", caption:"Le salon — ambiance" }
+  ],
+  "room.kitchen": [
+    { type:"image", src:"images/cuisine.jpg",  caption:"La cuisine" },
+    { type:"image", src:"images/cuisine2.jpg", caption:"La cuisine — équipements" },
+    { type:"image", src:"images/cuisine3.jpg", caption:"La cuisine — détail" },
+    { type:"video", src:"images/cuisine.mp4",  caption:"La cuisine — visite vidéo" }
+  ],
+  "room.bed1":    [
+    { type:"image", src:"images/chambre1.jpg",  caption:"Chambre 1" },
+    { type:"image", src:"images/chambre1b.jpg", caption:"Chambre 1 — détail" },
+    { type:"image", src:"images/chambre1c.jpg", caption:"Chambre 1 — vue" },
+    { type:"image", src:"images/chambre1d.jpg", caption:"Chambre 1 — ambiance" }
+  ],
+  "room.bed2":    [
+    { type:"image", src:"images/chambre2.jpg",  caption:"Chambre 2" },
+    { type:"image", src:"images/chambre2b.jpg", caption:"Chambre 2 — détail" },
+    { type:"image", src:"images/chambre2c.jpg", caption:"Chambre 2 — vue" },
+    { type:"image", src:"images/chambre2d.jpg", caption:"Chambre 2 — ambiance" }
+  ],
+  "room.bed3":    [
+    { type:"image", src:"images/chambre3.jpg",  caption:"Chambre 3" },
+    { type:"image", src:"images/chambre3b.jpg", caption:"Chambre 3 — détail" },
+    { type:"image", src:"images/chambre3c.jpg", caption:"Chambre 3 — vue" }
+  ],
+  "room.bath":    [
+    { type:"image", src:"images/sdb.jpg",   caption:"Salle de bain" },
+    { type:"image", src:"images/sdb4.jpg",  caption:"Salle de bain — détail" }
+  ],
+  "room.terrace": [
+    { type:"image", src:"images/terrasse.jpg",  caption:"Terrasse" },
+    { type:"image", src:"images/terrasse2.jpg", caption:"Terrasse — vue jardin" },
+    { type:"image", src:"images/terrasse3.jpg", caption:"Terrasse — salon extérieur" },
+    { type:"image", src:"images/terrasse4.jpg", caption:"Terrasse — ambiance" }
+  ]
+};
+
+/* -------- logique de la galerie -------- */
+const lightbox   = document.getElementById("lightbox");
+const lbImg      = document.getElementById("lbImg");
+const lbVideo    = document.getElementById("lbVideo");
+const lbCaption  = document.getElementById("lightboxCaption");
+const lbCounter  = document.getElementById("lightboxCounter");
+const lbDots     = document.getElementById("lbDots");
+
+let lbGallery = [], lbIndex = 0;
+
+function lbShow(index){
+  lbIndex = ((index % lbGallery.length) + lbGallery.length) % lbGallery.length;
+  const item = lbGallery[lbIndex];
+
+  // Stop video quand on change de slide
+  lbVideo.pause(); lbVideo.src = "";
+  lbImg.classList.remove("active");
+  lbVideo.classList.remove("active");
+
+  if(item.type === "video"){
+    lbVideo.src = item.src;
+    lbVideo.load(); lbVideo.play();
+    lbVideo.classList.add("active");
+  } else {
+    lbImg.src = item.src;
+    lbImg.classList.add("active");
+  }
+
+  lbCaption.textContent = item.caption || "";
+  lbCounter.textContent = (lbIndex + 1) + " / " + lbGallery.length;
+
+  // Mise à jour des dots
+  lbDots.querySelectorAll(".lb-dot").forEach((d, i) => d.classList.toggle("active", i === lbIndex));
+}
+
+function openRoomGallery(roomKey, startIndex){
+  const gallery = ROOM_GALLERIES[roomKey];
+  if(!gallery || gallery.length === 0) return;
+  lbGallery = gallery;
+
+  // Construire les dots
+  lbDots.innerHTML = "";
+  gallery.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "lb-dot" + (i === startIndex ? " active" : "");
+    dot.addEventListener("click", () => lbShow(i));
+    lbDots.appendChild(dot);
+  });
+
+  lbShow(startIndex);
+  lightbox.classList.add("open");
+}
+
+function closeLightbox(){
+  lightbox.classList.remove("open");
+  lbVideo.pause(); lbVideo.src = "";
+  lbImg.src = "";
+}
+
+document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+lightbox.addEventListener("click", (e) => { if(e.target === lightbox) closeLightbox(); });
+document.addEventListener("keydown", (e) => {
+  if(!lightbox.classList.contains("open")) return;
+  if(e.key === "Escape")      closeLightbox();
+  if(e.key === "ArrowLeft")   lbShow(lbIndex - 1);
+  if(e.key === "ArrowRight")  lbShow(lbIndex + 1);
+});
+document.getElementById("lbPrev").addEventListener("click", () => lbShow(lbIndex - 1));
+document.getElementById("lbNext").addEventListener("click", () => lbShow(lbIndex + 1));
+
+// Rendre chaque vignette du carrousel cliquable → ouvre la galerie de la pièce
+document.querySelectorAll("#roomCarousel figure").forEach(fig => {
+  const key = fig.querySelector("[data-i18n]")?.getAttribute("data-i18n");
+  if(!key) return;
+  const box = fig.querySelector(".ph-img");
+  if(box) box.addEventListener("click", () => openRoomGallery(key, 0));
+});
+
+// Lightbox simple pour les autres images du site (galerie maison + région)
+document.querySelectorAll(".ph-img").forEach(box => {
+  if(box.closest("#roomCarousel")) return; // déjà géré ci-dessus
+  box.addEventListener("click", () => {
+    const img = box.querySelector("img");
+    // On ouvre même si l'image est cachée par onerror — on vérifie naturalWidth
+    if(!img || img.naturalWidth === 0) return;
+    const caption = box.querySelector("span")?.textContent?.trim() || "";
+    lbGallery = [{ type:"image", src:img.src, caption: caption === "Photo à ajouter" ? "" : caption }];
+    lbDots.innerHTML = "";
+    lbShow(0);
+    lightbox.classList.add("open");
+  });
+});
+
+/* ---------------------- HERO : PHOTO OU VIDÉO ---------------------- */
+function initHeroMedia(){
+  const holder = document.getElementById("heroMedia");
+  if(CONFIG.heroType === "video"){
+    holder.innerHTML = `<video autoplay muted loop playsinline poster="images/hero.jpg">
+      <source src="images/hero.mp4" type="video/mp4">
+    </video>`;
+  } else {
+    // Essaie d'abord .jpg puis .png
+    const img = new Image();
+    img.onload = () => holder.style.backgroundImage = `url('images/hero.jpg')`;
+    img.onerror = () => holder.style.backgroundImage = `url('images/hero.jpg')`;
+    img.src = 'images/hero.jpg';
+  }
+}
+
+/* ---------------------- INIT ---------------------- */
+initHeroMedia();
+applyI18n();
+renderGuests();
+
+/* -- Cacher le texte placeholder quand la photo est chargée -- */
+document.querySelectorAll('.ph-img img').forEach(img => {
+  const hideSpan = () => {
+    img.classList.add('loaded');
+    const span = img.parentElement.querySelector('span');
+    if(span) span.style.display = 'none';
+  };
+  if(img.complete && img.naturalWidth > 0) hideSpan();
+  else img.addEventListener('load', hideSpan);
+});
+
+/* -- Chargement flexible PNG / JPG --
+   Pour chaque image du site : si le fichier .png n'existe pas,
+/* -- Si une image ne se charge pas, on la cache simplement -- */
+document.querySelectorAll('img[src^="images/"]').forEach(img => {
+  if(img.src.includes('logo.png')) return;
+  img.onerror = function(){ this.style.display = 'none'; this.onerror = null; };
+});
+document.getElementById('lbImg').addEventListener('error', function(){
+  this.style.display = 'none';
+});
+</script>
+</body>
+</html>
