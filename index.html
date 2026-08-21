@@ -1547,8 +1547,6 @@ document.querySelectorAll('.ph-img img').forEach(img => {
   else img.addEventListener('load', hideSpan);
 });
 
-/* -- Chargement flexible PNG / JPG --
-   Pour chaque image du site : si le fichier .png n'existe pas,
 /* -- Si une image ne se charge pas, on la cache simplement -- */
 document.querySelectorAll('img[src^="images/"]').forEach(img => {
   if(img.src.includes('logo.png')) return;
