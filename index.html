@@ -1552,9 +1552,6 @@ document.querySelectorAll('img[src^="images/"]').forEach(img => {
   if(img.src.includes('logo.png')) return;
   img.onerror = function(){ this.style.display = 'none'; this.onerror = null; };
 });
-document.getElementById('lbImg').addEventListener('error', function(){
-  this.style.display = 'none';
-});
 </script>
 </body>
 </html>
